@@ -14,9 +14,9 @@ uniform int rotStyle;
 
 void main()
 {
+    TexCoord = aPos * vec2(1.0f, -1.0f);
+	
 	vec2 pixelSize = vec2(1.0f/480, 1.0f/360);
-	vec2 invertY = vec2(1.0f, -1.0f);
-	vec2 invertX = vec2(-1.0f, 1.0f);
 	float s = scale / 100;
 	
     vec2 p = aPos * size * (1 + issvg);
@@ -37,14 +37,12 @@ void main()
 		);
 		break;
 	}
-	
+
 	p *= scale / 100;
 	
-	p += pos * (1 + float(issvg)) * vec2(1.0f, 1.0f);
+	p += pos * (1 + float(issvg));
 	
-	p *= pixelSize;
+	p *= pixelSize * vec2(1.0f, -1.0f);
 
 	gl_Position = vec4(p, layer, 1.0f);
-    TexCoord = aPos;
-	
 }
