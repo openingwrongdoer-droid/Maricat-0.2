@@ -12,6 +12,8 @@ uniform float layer;
 uniform float dir;
 uniform int rotStyle;
 
+//pretty sure it is accurate. issvg is needed because the library is use to import svg halves their size.
+
 void main()
 {
     TexCoord = aPos * vec2(1.0f, -1.0f);
@@ -40,9 +42,9 @@ void main()
 
 	p *= scale / 100;
 	
-	p += pos * (1 + float(issvg));
+	p += pos * 2 * vec2(1.0f, -1.0f);
 	
 	p *= pixelSize * vec2(1.0f, -1.0f);
-
+	
 	gl_Position = vec4(p, layer, 1.0f);
 }
